@@ -42,6 +42,10 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.0.0.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EPPlus.4.0.0-beta2\lib\net20\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mvc.RazorTools">
       <HintPath>..\packages\Mvc.RazorTools.Base.1.0.5\lib\net45\Mvc.RazorTools.dll</HintPath>
@@ -202,10 +206,72 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Config\AppConfig.cs" />
+    <Compile Include="Config\ConfigFile.cs" />
+    <Compile Include="Config\HashSet.cs" />
+    <Compile Include="Config\ISet.cs" />
+    <Compile Include="Config\PropertiesParser.cs" />
+    <Compile Include="Contracts\ICalibrationStandardRepository.cs" />
+    <Compile Include="Contracts\IDashboardRepository.cs" />
+    <Compile Include="Contracts\IEftCalculator.cs" />
+    <Compile Include="Contracts\IMachineRepository.cs" />
+    <Compile Include="Contracts\IOutlineDescription.cs" />
+    <Compile Include="Contracts\IOutlineDescriptionRepository.cs" />
+    <Compile Include="Contracts\IOutlineItem.cs" />
+    <Compile Include="Contracts\IOutlineItemRepository.cs" />
+    <Compile Include="Contracts\IOutlineTopicRepository.cs" />
+    <Compile Include="Contracts\IPilotPlantRepositoryHelper.cs" />
+    <Compile Include="Contracts\IProductRepository.cs" />
+    <Compile Include="Contracts\IQCRepository.cs" />
+    <Compile Include="Contracts\IReadingRepository.cs" />
+    <Compile Include="Contracts\IReadingSessionRepository.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Contracts\IRepositoryHelper.cs" />
+    <Compile Include="Contracts\IRunHistoryRepository.cs" />
+    <Compile Include="Contracts\IRunRepository.cs" />
+    <Compile Include="Contracts\ISampleAnionRepository.cs" />
+    <Compile Include="Contracts\ISampleCationRepository.cs" />
+    <Compile Include="Contracts\ISampleIronRepository.cs" />
+    <Compile Include="Contracts\ISamplePlanDetailsRepository.cs" />
+    <Compile Include="Contracts\ISamplePlanRepository.cs" />
+    <Compile Include="Contracts\ISamplesRepository.cs" />
+    <Compile Include="Contracts\ISequenceRepository.cs" />
+    <Compile Include="Contracts\IStdAnionRepository.cs" />
+    <Compile Include="Contracts\IStdCationRepository.cs" />
+    <Compile Include="Contracts\IStdIronRepository.cs" />
+    <Compile Include="Contracts\ITankRepository.cs" />
+    <Compile Include="ControllerHelpers\IRedirectStringBuilder.cs" />
+    <Compile Include="ControllerHelpers\IRedirectStringBuilderFactory.cs" />
+    <Compile Include="ControllerHelpers\RedirectStringBuilder.cs" />
+    <Compile Include="ControllerHelpers\RedirectStringBuilderFactory.cs" />
+    <Compile Include="ControllerHelpers\RedirectStringParts.cs" />
+    <Compile Include="ControllerHelpers\UpdateCheckboxPostParameters.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ActiveDirectory\LdapAuthentication.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DTOs\CalibrationStandardDto.cs" />
+    <Compile Include="DTOs\CreateSequenceDto.cs" />
+    <Compile Include="DTOs\DataPoint.cs" />
+    <Compile Include="DTOs\DataPointList.cs" />
+    <Compile Include="DTOs\ErrorReportDto.cs" />
+    <Compile Include="DTOs\InfoDto.cs" />
+    <Compile Include="DTOs\OutlineDescriptionDto.cs" />
+    <Compile Include="DTOs\OutlineItemsDTO.cs" />
+    <Compile Include="DTOs\QCSampleDto.cs" />
+    <Compile Include="DTOs\QcSampleItemDto.cs" />
+    <Compile Include="DTOs\ReadingEditDto.cs" />
+    <Compile Include="DTOs\ReadingsForRunDto.cs" />
+    <Compile Include="DTOs\RotatedReadingsListDto.cs" />
+    <Compile Include="DTOs\RunHistoryChartDto.cs" />
+    <Compile Include="DTOs\RunHistoryItemDto.cs" />
+    <Compile Include="DTOs\SampleAnionDto.cs" />
+    <Compile Include="DTOs\SampleCationDto.cs" />
+    <Compile Include="DTOs\SampleDetailDto.cs" />
+    <Compile Include="DTOs\SampleDto.cs" />
+    <Compile Include="DTOs\SampleIronDto.cs" />
+    <Compile Include="DTOs\TankHistoryDto.cs" />
+    <Compile Include="DTOs\ViewConstants.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -314,6 +380,9 @@
     <Compile Include="Models\SamplePlanDetail.cs">
       <DependentUpon>PilotPlant.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sequence.cs">
+      <DependentUpon>Analytics.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STDAnion.cs">
       <DependentUpon>Analytics.tt</DependentUpon>
     </Compile>
@@ -330,7 +399,38 @@
       <DependentUpon>PilotPlant.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryHelpers\DecimalComparisonFilter.cs" />
+    <Compile Include="RepositoryHelpers\PilotPlantStoredProcedure.cs" />
+    <Compile Include="Repository\CalibrationStandardRepository.cs" />
+    <Compile Include="Repository\DashboardRepository.cs" />
+    <Compile Include="Repository\GenericAnalyticsRepository.cs" />
+    <Compile Include="Repository\GenericPilotPlantRepository.cs" />
+    <Compile Include="Repository\MachineRepository.cs" />
+    <Compile Include="Repository\OutlineDescriptionRepository.cs" />
+    <Compile Include="Repository\OutlineItemRepository.cs" />
+    <Compile Include="Repository\OutlineTopicRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\QCRepository.cs" />
+    <Compile Include="Repository\ReadingRepository.cs" />
+    <Compile Include="Repository\ReadingSessionRepository.cs" />
+    <Compile Include="Repository\RunHistoryRepository.cs" />
+    <Compile Include="Repository\RunRepository.cs" />
+    <Compile Include="Repository\SampleAnionRepository.cs" />
+    <Compile Include="Repository\SampleCationRepository.cs" />
+    <Compile Include="Repository\SampleIronRepository.cs" />
+    <Compile Include="Repository\SamplePlanDetailsRepository.cs" />
+    <Compile Include="Repository\SamplePlanRepository.cs" />
+    <Compile Include="Repository\SamplesRepository.cs" />
+    <Compile Include="Repository\SequenceRepository.cs" />
+    <Compile Include="Repository\StdAnionRepository.cs" />
+    <Compile Include="Repository\StdCationRepository.cs" />
+    <Compile Include="Repository\StdIronRepository.cs" />
+    <Compile Include="Repository\TankRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\ColumnNameFilter.cs" />
+    <Compile Include="Utility\EftCalculator.cs" />
+    <Compile Include="ViewModels\VMDashboard.cs" />
+    <Compile Include="ViewModels\VMRuns.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

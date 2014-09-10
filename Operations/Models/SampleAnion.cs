@@ -9,7 +9,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Process.Models
+namespace Operations.Models
 {
     using System;
     using System.Collections.Generic;

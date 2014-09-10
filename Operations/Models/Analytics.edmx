@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AnalyticsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AnalyticsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CalibrationStandard">
           <Key>
             <PropertyRef Name="Id" />
@@ -156,6 +156,33 @@
           <Property Name="Mn PPM" Type="money" />
           <Property Name="SpreadsheetLink" Type="varchar" MaxLength="260" />
         </EntityType>
+        <EntityType Name="Sequence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Serial_No" Type="float" />
+          <Property Name="Submission_Filename" Type="nvarchar" MaxLength="255" />
+          <Property Name="Team" Type="nvarchar" MaxLength="25" />
+          <Property Name="SubmittedBy" Type="nvarchar" MaxLength="25" />
+          <Property Name="Status" Type="nvarchar" MaxLength="25" />
+          <Property Name="Received" Type="datetime" />
+          <Property Name="Method" Type="nvarchar" MaxLength="25" />
+          <Property Name="NumberOfSamples" Type="float" />
+          <Property Name="PreppedBy" Type="nvarchar" MaxLength="25" />
+          <Property Name="Instrument" Type="nvarchar" MaxLength="25" />
+          <Property Name="ProcessedBy" Type="nvarchar" MaxLength="25" />
+          <Property Name="Reported" Type="datetime" />
+          <Property Name="SentBy" Type="nvarchar" MaxLength="25" />
+          <Property Name="TAT" Type="float" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="512" />
+          <Property Name="Archive_Location" Type="varchar" MaxLength="2000" />
+          <Property Name="InfoID" Type="int" />
+          <Property Name="Pathname" Type="varchar" MaxLength="5000" />
+          <Property Name="SpreadsheetVersion" Type="varchar" MaxLength="10" />
+          <Property Name="Column1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Column2" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="STDAnion">
           <Key>
             <PropertyRef Name="Id" />
@@ -304,6 +331,7 @@
           <EntitySet Name="SampleAnion" EntityType="Self.SampleAnion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SampleCation" EntityType="Self.SampleCation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SampleIron" EntityType="Self.SampleIron" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sequence" EntityType="Self.Sequence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STDAnion" EntityType="Self.STDAnion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STDCation" EntityType="Self.STDCation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STDIron" EntityType="Self.STDIron" Schema="dbo" store:Type="Tables" />
@@ -329,8 +357,7 @@
             <End Role="Submission" EntitySet="Submission" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AnalyticsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -667,7 +694,35 @@
             <End Role="Info" EntitySet="Infoes" />
             <End Role="Submission" EntitySet="Submissions" />
           </AssociationSet>
+          <EntitySet Name="Sequences" EntityType="AnalyticsModel.Sequence" />
         </EntityContainer>
+        <EntityType Name="Sequence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Serial_No" Type="Double" />
+          <Property Name="Submission_Filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Team" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Received" Type="DateTime" Precision="3" />
+          <Property Name="Method" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfSamples" Type="Double" />
+          <Property Name="PreppedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Instrument" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Reported" Type="DateTime" Precision="3" />
+          <Property Name="SentBy" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TAT" Type="Double" />
+          <Property Name="Comments" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Archive_Location" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="InfoID" Type="Int32" />
+          <Property Name="Pathname" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="SpreadsheetVersion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Column1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Column2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -913,6 +968,34 @@
                 <ScalarProperty Name="SOP" ColumnName="SOP" />
                 <ScalarProperty Name="Instrument" ColumnName="Instrument" />
                 <ScalarProperty Name="TabName" ColumnName="TabName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sequences">
+            <EntityTypeMapping TypeName="AnalyticsModel.Sequence">
+              <MappingFragment StoreEntitySet="Sequence">
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="SpreadsheetVersion" ColumnName="SpreadsheetVersion" />
+                <ScalarProperty Name="Pathname" ColumnName="Pathname" />
+                <ScalarProperty Name="InfoID" ColumnName="InfoID" />
+                <ScalarProperty Name="Archive_Location" ColumnName="Archive_Location" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TAT" ColumnName="TAT" />
+                <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="ProcessedBy" ColumnName="ProcessedBy" />
+                <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+                <ScalarProperty Name="PreppedBy" ColumnName="PreppedBy" />
+                <ScalarProperty Name="NumberOfSamples" ColumnName="NumberOfSamples" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Received" ColumnName="Received" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Submission_Filename" ColumnName="Submission_Filename" />
+                <ScalarProperty Name="Serial_No" ColumnName="Serial_No" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Process.Models;
-
 namespace Operations.Models
 {
     using System;
@@ -38,5 +36,6 @@ namespace Operations.Models
         public virtual DbSet<STDCation> STDCations { get; set; }
         public virtual DbSet<STDIron> STDIrons { get; set; }
         public virtual DbSet<Submission> Submissions { get; set; }
+        public virtual DbSet<Sequence> Sequences { get; set; }
     }
 }

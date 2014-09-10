@@ -22,7 +22,7 @@ namespace OfficeHandler.FileIO
             if (wordFileInfo.DirectoryName != null)
             {
                 string path = wordFileInfo.DirectoryName;
-                string filename = wordFileInfo.Name.Replace("Outline", "Sample_Submission").Replace(".docx", ".xlsx");
+                string filename = wordFileInfo.Name.Replace("Outline", "Sample_Submission").Replace(".docx", "_Nick.xlsx");
                 if (!path.EndsWith("\\"))
                     path += "\\";
                 FileInfo dest = new FileInfo(path + filename);

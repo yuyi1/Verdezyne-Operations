@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
-using Operations.Models;
 
-namespace Process.Models
+
+namespace Operations.Models
 {
     using System;
     using System.Collections.Generic;

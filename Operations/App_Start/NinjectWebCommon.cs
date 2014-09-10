@@ -1,3 +1,8 @@
+using Operations.Contracts;
+using Operations.ControllerHelpers;
+using Operations.Repository;
+using Operations.Utility;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Operations.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Operations.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +66,32 @@ namespace Operations.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            kernel.Bind<IRunRepository>().To<RunRepository>();
+            kernel.Bind<IDashboardRepository>().To<DashboardRepository>();
+            kernel.Bind<IQCRepository>().To<QcRepository>();
+            kernel.Bind<IRunHistoryRepository>().To<RunHistoryRepository>();
+            kernel.Bind<IReadingSessionRepository>().To<ReadingSessionRepository>();
+            kernel.Bind<IReadingRepository>().To<ReadingRepository>();
+            kernel.Bind<IEftCalculator>().To<IEftCalculator>();
+            kernel.Bind<IRedirectStringBuilderFactory>().To<RedirectStringBuilderFactory>();
+            kernel.Bind<IRedirectStringBuilder>().To<RedirectStringBuilder>();
+            kernel.Bind<IEftCalculator>().To<EftCalculator>();
+            kernel.Bind<IOutlineItemRepository>().To<OutlineItemRepository>();
+            kernel.Bind<IOutlineDescriptionRepository>().To<OutlineDescriptionRepository>();
+            kernel.Bind<IOutlineTopicRepository>().To<OutlineTopicRepository>();
+            kernel.Bind<ISamplePlanRepository>().To<SamplePlanRepository>();
+            kernel.Bind<ISamplePlanDetailsRepository>().To<SamplePlanDetailsRepository>();
+            kernel.Bind<IMachineRepository>().To<MachineRepository>();
+            kernel.Bind<IProductRepository>().To<ProductRepository>();
+            kernel.Bind<ITankRepository>().To<TankRepository>();
+            kernel.Bind<ICalibrationStandardRepository>().To<CalibrationStandardRepository>();
+            kernel.Bind<IStdAnionRepository>().To<StdAnionRepository>();
+            kernel.Bind<IStdCationRepository>().To<StdCationRepository>();
+            kernel.Bind<IStdIronRepository>().To<StdIronRepository>();
+            kernel.Bind<ISampleIronRepository>().To<SampleIronRepository>();
+            kernel.Bind<ISampleAnionRepository>().To<SampleAnionRepository>();
+            kernel.Bind<ISampleCationRepository>().To<SampleCationRepository>();
+                                                   
+}        
     }
 }
