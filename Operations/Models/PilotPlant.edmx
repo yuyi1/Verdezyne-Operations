@@ -1,0 +1,1226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PilotPlantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GrowthPhase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="ImageFileURI" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineReadingDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="TankId" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="int" Nullable="false" />
+          <Property Name="ReadingDescriptionName" Type="nvarchar(max)" />
+          <Property Name="DataColumnType" Type="nvarchar(max)" />
+          <Property Name="ReadingTypeName" Type="nvarchar(max)" />
+          <Property Name="IsNullable" Type="bit" Nullable="false" />
+          <Property Name="ValuesState" Type="int" Nullable="false" />
+          <Property Name="High" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Low" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="OutlineDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OutlineTopicId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="OutlineTopicName" Type="nvarchar(max)" />
+          <Property Name="ValuesState" Type="int" Nullable="false" />
+          <Property Name="Checked" Type="bit" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OutlineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunId" Type="int" Nullable="false" />
+          <Property Name="TankId" Type="int" Nullable="false" />
+          <Property Name="OutlineTopicId" Type="int" Nullable="false" />
+          <Property Name="OutlineDescriptionId" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Checked" Type="bit" Nullable="false" />
+          <Property Name="ValuesState" Type="int" Nullable="false" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OutlineTopic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DistinguishedName" Type="nvarchar(max)" />
+          <Property Name="SAMAccountName" Type="nvarchar(max)" />
+          <Property Name="EmailAddress" Type="nvarchar(max)" />
+          <Property Name="Alarm" Type="nvarchar(max)" />
+          <Property Name="Pin" Type="int" Nullable="false" />
+          <Property Name="GivenName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="SurName" Type="nvarchar(max)" />
+          <Property Name="VoiceTelephoneNumber" Type="nvarchar(max)" />
+          <Property Name="LoginName" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ImageFileURI" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunDate" Type="nvarchar(max)" />
+          <Property Name="ReadingDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="RunId" Type="int" Nullable="false" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="ReadingSessionId" Type="int" Nullable="false" />
+          <Property Name="TankId" Type="int" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="int" Nullable="false" />
+          <Property Name="MachineReadingDescriptionId" Type="int" Nullable="false" />
+          <Property Name="ValuesState" Type="int" Nullable="false" />
+          <Property Name="ReadingTime" Type="nvarchar(max)" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="Eft" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ReadingDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DataColumn" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ReadingSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="EFT" Type="nvarchar(max)" />
+          <Property Name="PostIdxTime" Type="nvarchar(max)" />
+          <Property Name="IsOpen" Type="bit" Nullable="false" />
+          <Property Name="Opened" Type="datetime" />
+          <Property Name="Closed" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RotatedReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunId" Type="int" />
+          <Property Name="Run_Date" Type="varchar" MaxLength="6" />
+          <Property Name="MachineId" Type="int" />
+          <Property Name="Machine_Name" Type="varchar" MaxLength="10" />
+          <Property Name="ReadingSessionId" Type="int" />
+          <Property Name="TankId" Type="int" />
+          <Property Name="Tank_Name" Type="varchar" MaxLength="10" />
+          <Property Name="GrowthPhaseId" Type="int" />
+          <Property Name="Growth_Phase_Name" Type="varchar" MaxLength="75" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Product_Name" Type="varchar(max)" />
+          <Property Name="UpdateBy" Type="varchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="EFT" Type="float" />
+          <Property Name="TANK" Type="varchar(max)" />
+          <Property Name="TEMP_C" Type="varchar(max)" />
+          <Property Name="JTEMP_C" Type="varchar(max)" />
+          <Property Name="pO2_pct" Type="varchar(max)" />
+          <Property Name="pH" Type="varchar(max)" />
+          <Property Name="STIRR_RPM" Type="varchar(max)" />
+          <Property Name="AIRF_LPM" Type="varchar(max)" />
+          <Property Name="PRESS_mbar" Type="varchar(max)" />
+          <Property Name="WEIGHT_KG" Type="varchar(max)" />
+          <Property Name="Agitator_Seal_psi" Type="varchar(max)" />
+          <Property Name="Clean_Steam_psi" Type="varchar(max)" />
+          <Property Name="Plant_Steam_psi" Type="varchar(max)" />
+          <Property Name="Base_L" Type="varchar(max)" />
+          <Property Name="Antifoam_L" Type="varchar(max)" />
+          <Property Name="OD600" Type="varchar(max)" />
+          <Property Name="OD600_dilution_factor" Type="varchar(max)" />
+          <Property Name="Off_line_pH" Type="varchar(max)" />
+          <Property Name="Plate_Sample" Type="varchar(max)" />
+          <Property Name="YSI_Glucose_g_per_L" Type="varchar(max)" />
+          <Property Name="Feed_KG" Type="varchar(max)" />
+          <Property Name="Feed_Rate_L_per_hr" Type="varchar(max)" />
+          <Property Name="Co_Feed_KG" Type="varchar(max)" />
+          <Property Name="Co_Feed_Rate_L_per_hr" Type="varchar(max)" />
+          <Property Name="Actual_Co_Feed_Rate_kg_per_hr" Type="varchar(max)" />
+          <Property Name="New_Feed_Rate_L_per_hr" Type="varchar(max)" />
+          <Property Name="GC_weight_g" Type="varchar(max)" />
+          <Property Name="Base_mL" Type="varchar(max)" />
+          <Property Name="Feed_mL" Type="varchar(max)" />
+          <Property Name="CoFeed_mL" Type="varchar(max)" />
+          <Property Name="Foam" Type="varchar(max)" />
+          <Property Name="Crust" Type="varchar(max)" />
+          <Property Name="Swirl" Type="varchar(max)" />
+          <Property Name="Over_Flow" Type="varchar(max)" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="Base_g" Type="varchar(max)" />
+          <Property Name="Feed_g" Type="varchar(max)" />
+          <Property Name="Initials" Type="varchar(max)" />
+          <Property Name="Feed" Type="varchar(max)" />
+          <Property Name="Cofeed" Type="varchar(max)" />
+          <Property Name="Fermentation_End_Time_hrs" Type="varchar(max)" />
+          <Property Name="LCAA_pct_Ymax" Type="varchar(max)" />
+          <Property Name="LCAA_Final_g_per_L" Type="varchar(max)" />
+          <Property Name="LCAA_Produced_g" Type="varchar(max)" />
+          <Property Name="LCAA_Productivity_g_per_L_hr" Type="varchar(max)" />
+          <Property Name="Primary_Feed_Consumed_g" Type="varchar(max)" />
+          <Property Name="Primary_Feed_End_time_hrs" Type="varchar(max)" />
+          <Property Name="Primary_Feed_Start_Time_hrs" Type="varchar(max)" />
+          <Property Name="Purity_pct" Type="varchar(max)" />
+          <Property Name="Specific_Productivity_g_per_L_hr_per_g_per_L_DCW" Type="varchar(max)" />
+          <Property Name="TPAA_pct_Ymax" Type="varchar(max)" />
+          <Property Name="TPAA_Produced_g" Type="varchar(max)" />
+          <Property Name="Analyical_Sample_Taken" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Run">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Rundate" Type="nvarchar(max)" />
+          <Property Name="RunStart" Type="datetime" />
+          <Property Name="InductionStart" Type="datetime" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="RunStatusId" Type="int" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunId" Type="int" Nullable="false" />
+          <Property Name="TankId" Type="int" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="int" Nullable="false" />
+          <Property Name="ValueArray" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="RunStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SamplePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunId" Type="int" />
+          <Property Name="WordFileUri" Type="varchar" MaxLength="260" />
+          <Property Name="ExcelFileUri" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="SamplePlanDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SamplePlanId" Type="int" />
+          <Property Name="RunId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="DateAndTime" Type="varchar" MaxLength="50" />
+          <Property Name="IsPrepared" Type="bit" Nullable="false" />
+          <Property Name="DatePrepared" Type="datetime" />
+          <Property Name="PreparedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsWeighed" Type="bit" Nullable="false" />
+          <Property Name="DateWeighed" Type="datetime" />
+          <Property Name="WeighedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsSubmitted" Type="bit" Nullable="false" />
+          <Property Name="DateSubmitted" Type="datetime" />
+          <Property Name="SubmittedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="UpdateBy" Type="nvarchar(max)" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_OutlineItem_dbo_Run_RunId">
+          <End Role="Run" Type="Self.Run" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OutlineItem" Type="Self.OutlineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OutlineItem">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tank_dbo_Machine_MachineId">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tank" Type="Self.Tank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tank">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutlineDescription_OutlineTopic">
+          <End Role="OutlineTopic" Type="Self.OutlineTopic" Multiplicity="1" />
+          <End Role="OutlineDescription" Type="Self.OutlineDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutlineTopic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OutlineDescription">
+              <PropertyRef Name="OutlineTopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlan_Run">
+          <End Role="Run" Type="Self.Run" Multiplicity="0..1" />
+          <End Role="SamplePlan" Type="Self.SamplePlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlan">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlanDetail_Run">
+          <End Role="Run" Type="Self.Run" Multiplicity="1" />
+          <End Role="SamplePlanDetail" Type="Self.SamplePlanDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlanDetail">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlanDetail_SamplePlan">
+          <End Role="SamplePlan" Type="Self.SamplePlan" Multiplicity="0..1" />
+          <End Role="SamplePlanDetail" Type="Self.SamplePlanDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SamplePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlanDetail">
+              <PropertyRef Name="SamplePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PilotPlantModelStoreContainer">
+          <EntitySet Name="GrowthPhase" EntityType="Self.GrowthPhase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineReadingDescription" EntityType="Self.MachineReadingDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutlineDescription" EntityType="Self.OutlineDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutlineItem" EntityType="Self.OutlineItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutlineTopic" EntityType="Self.OutlineTopic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reading" EntityType="Self.Reading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReadingDescription" EntityType="Self.ReadingDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReadingSession" EntityType="Self.ReadingSession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RotatedReading" EntityType="Self.RotatedReading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Run" EntityType="Self.Run" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RunHistory" EntityType="Self.RunHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RunStatus" EntityType="Self.RunStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SamplePlan" EntityType="Self.SamplePlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SamplePlanDetail" EntityType="Self.SamplePlanDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tank" EntityType="Self.Tank" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_OutlineItem_dbo_Run_RunId" Association="Self.FK_dbo_OutlineItem_dbo_Run_RunId">
+            <End Role="Run" EntitySet="Run" />
+            <End Role="OutlineItem" EntitySet="OutlineItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tank_dbo_Machine_MachineId" Association="Self.FK_dbo_Tank_dbo_Machine_MachineId">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="Tank" EntitySet="Tank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutlineDescription_OutlineTopic" Association="Self.FK_OutlineDescription_OutlineTopic">
+            <End Role="OutlineTopic" EntitySet="OutlineTopic" />
+            <End Role="OutlineDescription" EntitySet="OutlineDescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlan_Run" Association="Self.FK_SamplePlan_Run">
+            <End Role="Run" EntitySet="Run" />
+            <End Role="SamplePlan" EntitySet="SamplePlan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlanDetail_Run" Association="Self.FK_SamplePlanDetail_Run">
+            <End Role="Run" EntitySet="Run" />
+            <End Role="SamplePlanDetail" EntitySet="SamplePlanDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlanDetail_SamplePlan" Association="Self.FK_SamplePlanDetail_SamplePlan">
+            <End Role="SamplePlan" EntitySet="SamplePlan" />
+            <End Role="SamplePlanDetail" EntitySet="SamplePlanDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PilotPlantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GrowthPhase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageFileURI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tanks" Relationship="Self.FK_dbo_Tank_dbo_Machine_MachineId" FromRole="Machine" ToRole="Tank" />
+        </EntityType>
+        <EntityType Name="MachineReadingDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="TankId" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="ReadingDescriptionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataColumnType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReadingTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsNullable" Type="Boolean" Nullable="false" />
+          <Property Name="ValuesState" Type="Int32" Nullable="false" />
+          <Property Name="High" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Low" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="OutlineDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OutlineTopicId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OutlineTopicName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValuesState" Type="Int32" Nullable="false" />
+          <Property Name="Checked" Type="Boolean" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OutlineTopic" Relationship="Self.FK_OutlineDescription_OutlineTopic" FromRole="OutlineDescription" ToRole="OutlineTopic" />
+        </EntityType>
+        <EntityType Name="OutlineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunId" Type="Int32" Nullable="false" />
+          <Property Name="TankId" Type="Int32" Nullable="false" />
+          <Property Name="OutlineTopicId" Type="Int32" Nullable="false" />
+          <Property Name="OutlineDescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Checked" Type="Boolean" Nullable="false" />
+          <Property Name="ValuesState" Type="Int32" Nullable="false" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Run" Relationship="Self.FK_dbo_OutlineItem_dbo_Run_RunId" FromRole="OutlineItem" ToRole="Run" />
+        </EntityType>
+        <EntityType Name="OutlineTopic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OutlineDescriptions" Relationship="Self.FK_OutlineDescription_OutlineTopic" FromRole="OutlineTopic" ToRole="OutlineDescription" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistinguishedName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SAMAccountName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Alarm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pin" Type="Int32" Nullable="false" />
+          <Property Name="GivenName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VoiceTelephoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoginName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ImageFileURI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Reading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReadingDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="RunId" Type="Int32" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="ReadingSessionId" Type="Int32" Nullable="false" />
+          <Property Name="TankId" Type="Int32" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="MachineReadingDescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="ValuesState" Type="Int32" Nullable="false" />
+          <Property Name="ReadingTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Eft" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReadingDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataColumn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReadingSession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EFT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostIdxTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsOpen" Type="Boolean" Nullable="false" />
+          <Property Name="Opened" Type="DateTime" Precision="3" />
+          <Property Name="Closed" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RotatedReading">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunId" Type="Int32" />
+          <Property Name="Run_Date" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MachineId" Type="Int32" />
+          <Property Name="Machine_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReadingSessionId" Type="Int32" />
+          <Property Name="TankId" Type="Int32" />
+          <Property Name="Tank_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GrowthPhaseId" Type="Int32" />
+          <Property Name="Growth_Phase_Name" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Product_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="EFT" Type="Double" />
+          <Property Name="TANK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TEMP_C" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JTEMP_C" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pO2_pct" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STIRR_RPM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AIRF_LPM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PRESS_mbar" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WEIGHT_KG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Agitator_Seal_psi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Clean_Steam_psi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Plant_Steam_psi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Base_L" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Antifoam_L" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OD600" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OD600_dilution_factor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Off_line_pH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Plate_Sample" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="YSI_Glucose_g_per_L" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Feed_KG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Feed_Rate_L_per_hr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Feed_KG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Co_Feed_Rate_L_per_hr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Actual_Co_Feed_Rate_kg_per_hr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="New_Feed_Rate_L_per_hr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GC_weight_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Base_mL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Feed_mL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CoFeed_mL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Foam" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Crust" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Swirl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Over_Flow" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Base_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Feed_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Initials" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Feed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cofeed" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fermentation_End_Time_hrs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LCAA_pct_Ymax" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LCAA_Final_g_per_L" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LCAA_Produced_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LCAA_Productivity_g_per_L_hr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Primary_Feed_Consumed_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Primary_Feed_End_time_hrs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Primary_Feed_Start_Time_hrs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Purity_pct" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Specific_Productivity_g_per_L_hr_per_g_per_L_DCW" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TPAA_pct_Ymax" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TPAA_Produced_g" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Analyical_Sample_Taken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Run">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rundate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RunStart" Type="DateTime" Precision="3" />
+          <Property Name="InductionStart" Type="DateTime" Precision="3" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="RunStatusId" Type="Int32" Nullable="false" />
+          <Property Name="GrowthPhaseId" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OutlineItems" Relationship="Self.FK_dbo_OutlineItem_dbo_Run_RunId" FromRole="Run" ToRole="OutlineItem" />
+          <NavigationProperty Name="SamplePlans" Relationship="Self.FK_SamplePlan_Run" FromRole="Run" ToRole="SamplePlan" />
+          <NavigationProperty Name="SamplePlanDetails" Relationship="Self.FK_SamplePlanDetail_Run" FromRole="Run" ToRole="SamplePlanDetail" />
+        </EntityType>
+        <EntityType Name="RunHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunId" Type="Int32" Nullable="false" />
+          <Property Name="TankId" Type="Int32" Nullable="false" />
+          <Property Name="ReadingDescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="ValueArray" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SamplePlan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunId" Type="Int32" />
+          <Property Name="WordFileUri" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="ExcelFileUri" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Run" Relationship="Self.FK_SamplePlan_Run" FromRole="SamplePlan" ToRole="Run" />
+          <NavigationProperty Name="SamplePlanDetails" Relationship="Self.FK_SamplePlanDetail_SamplePlan" FromRole="SamplePlan" ToRole="SamplePlanDetail" />
+        </EntityType>
+        <EntityType Name="SamplePlanDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SamplePlanId" Type="Int32" />
+          <Property Name="RunId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateAndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsPrepared" Type="Boolean" Nullable="false" />
+          <Property Name="DatePrepared" Type="DateTime" Precision="3" />
+          <Property Name="PreparedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsWeighed" Type="Boolean" Nullable="false" />
+          <Property Name="DateWeighed" Type="DateTime" Precision="3" />
+          <Property Name="WeighedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Precision="3" />
+          <Property Name="SubmittedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Run" Relationship="Self.FK_SamplePlanDetail_Run" FromRole="SamplePlanDetail" ToRole="Run" />
+          <NavigationProperty Name="SamplePlan" Relationship="Self.FK_SamplePlanDetail_SamplePlan" FromRole="SamplePlanDetail" ToRole="SamplePlan" />
+        </EntityType>
+        <EntityType Name="Tank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Machine" Relationship="Self.FK_dbo_Tank_dbo_Machine_MachineId" FromRole="Tank" ToRole="Machine" />
+        </EntityType>
+        <Association Name="FK_dbo_Tank_dbo_Machine_MachineId">
+          <End Role="Machine" Type="Self.Machine" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tank" Type="Self.Tank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tank">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OutlineDescription_OutlineTopic">
+          <End Role="OutlineTopic" Type="Self.OutlineTopic" Multiplicity="1" />
+          <End Role="OutlineDescription" Type="Self.OutlineDescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutlineTopic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OutlineDescription">
+              <PropertyRef Name="OutlineTopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OutlineItem_dbo_Run_RunId">
+          <End Role="Run" Type="Self.Run" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OutlineItem" Type="Self.OutlineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OutlineItem">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlan_Run">
+          <End Role="Run" Type="Self.Run" Multiplicity="0..1" />
+          <End Role="SamplePlan" Type="Self.SamplePlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlan">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlanDetail_Run">
+          <End Role="Run" Type="Self.Run" Multiplicity="1" />
+          <End Role="SamplePlanDetail" Type="Self.SamplePlanDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Run">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlanDetail">
+              <PropertyRef Name="RunId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePlanDetail_SamplePlan">
+          <End Role="SamplePlan" Type="Self.SamplePlan" Multiplicity="0..1" />
+          <End Role="SamplePlanDetail" Type="Self.SamplePlanDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SamplePlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SamplePlanDetail">
+              <PropertyRef Name="SamplePlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PilotPlantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GrowthPhases" EntityType="Self.GrowthPhase" />
+          <EntitySet Name="Machines" EntityType="Self.Machine" />
+          <EntitySet Name="MachineReadingDescriptions" EntityType="Self.MachineReadingDescription" />
+          <EntitySet Name="OutlineDescriptions" EntityType="Self.OutlineDescription" />
+          <EntitySet Name="OutlineItems" EntityType="Self.OutlineItem" />
+          <EntitySet Name="OutlineTopics" EntityType="Self.OutlineTopic" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Readings" EntityType="Self.Reading" />
+          <EntitySet Name="ReadingDescriptions" EntityType="Self.ReadingDescription" />
+          <EntitySet Name="ReadingSessions" EntityType="Self.ReadingSession" />
+          <EntitySet Name="RotatedReadings" EntityType="Self.RotatedReading" />
+          <EntitySet Name="Runs" EntityType="Self.Run" />
+          <EntitySet Name="RunHistories" EntityType="Self.RunHistory" />
+          <EntitySet Name="SamplePlans" EntityType="Self.SamplePlan" />
+          <EntitySet Name="SamplePlanDetails" EntityType="Self.SamplePlanDetail" />
+          <EntitySet Name="Tanks" EntityType="Self.Tank" />
+          <AssociationSet Name="FK_dbo_Tank_dbo_Machine_MachineId" Association="Self.FK_dbo_Tank_dbo_Machine_MachineId">
+            <End Role="Machine" EntitySet="Machines" />
+            <End Role="Tank" EntitySet="Tanks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OutlineDescription_OutlineTopic" Association="Self.FK_OutlineDescription_OutlineTopic">
+            <End Role="OutlineTopic" EntitySet="OutlineTopics" />
+            <End Role="OutlineDescription" EntitySet="OutlineDescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OutlineItem_dbo_Run_RunId" Association="Self.FK_dbo_OutlineItem_dbo_Run_RunId">
+            <End Role="Run" EntitySet="Runs" />
+            <End Role="OutlineItem" EntitySet="OutlineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlan_Run" Association="Self.FK_SamplePlan_Run">
+            <End Role="Run" EntitySet="Runs" />
+            <End Role="SamplePlan" EntitySet="SamplePlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlanDetail_Run" Association="Self.FK_SamplePlanDetail_Run">
+            <End Role="Run" EntitySet="Runs" />
+            <End Role="SamplePlanDetail" EntitySet="SamplePlanDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePlanDetail_SamplePlan" Association="Self.FK_SamplePlanDetail_SamplePlan">
+            <End Role="SamplePlan" EntitySet="SamplePlans" />
+            <End Role="SamplePlanDetail" EntitySet="SamplePlanDetails" />
+          </AssociationSet>
+          <EntitySet Name="RunStatus" EntityType="PilotPlantModel.RunStatus" />
+        </EntityContainer>
+        <EntityType Name="RunStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PilotPlantModelStoreContainer" CdmEntityContainer="PilotPlantEntities">
+          <EntitySetMapping Name="GrowthPhases">
+            <EntityTypeMapping TypeName="PilotPlantModel.GrowthPhase">
+              <MappingFragment StoreEntitySet="GrowthPhase">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machines">
+            <EntityTypeMapping TypeName="PilotPlantModel.Machine">
+              <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ImageFileURI" ColumnName="ImageFileURI" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineReadingDescriptions">
+            <EntityTypeMapping TypeName="PilotPlantModel.MachineReadingDescription">
+              <MappingFragment StoreEntitySet="MachineReadingDescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="GrowthPhaseId" ColumnName="GrowthPhaseId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="TankId" ColumnName="TankId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ReadingDescriptionId" ColumnName="ReadingDescriptionId" />
+                <ScalarProperty Name="ReadingDescriptionName" ColumnName="ReadingDescriptionName" />
+                <ScalarProperty Name="DataColumnType" ColumnName="DataColumnType" />
+                <ScalarProperty Name="ReadingTypeName" ColumnName="ReadingTypeName" />
+                <ScalarProperty Name="IsNullable" ColumnName="IsNullable" />
+                <ScalarProperty Name="ValuesState" ColumnName="ValuesState" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutlineDescriptions">
+            <EntityTypeMapping TypeName="PilotPlantModel.OutlineDescription">
+              <MappingFragment StoreEntitySet="OutlineDescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OutlineTopicId" ColumnName="OutlineTopicId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OutlineTopicName" ColumnName="OutlineTopicName" />
+                <ScalarProperty Name="ValuesState" ColumnName="ValuesState" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutlineItems">
+            <EntityTypeMapping TypeName="PilotPlantModel.OutlineItem">
+              <MappingFragment StoreEntitySet="OutlineItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="TankId" ColumnName="TankId" />
+                <ScalarProperty Name="OutlineTopicId" ColumnName="OutlineTopicId" />
+                <ScalarProperty Name="OutlineDescriptionId" ColumnName="OutlineDescriptionId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="ValuesState" ColumnName="ValuesState" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutlineTopics">
+            <EntityTypeMapping TypeName="PilotPlantModel.OutlineTopic">
+              <MappingFragment StoreEntitySet="OutlineTopic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="PilotPlantModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistinguishedName" ColumnName="DistinguishedName" />
+                <ScalarProperty Name="SAMAccountName" ColumnName="SAMAccountName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Alarm" ColumnName="Alarm" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="VoiceTelephoneNumber" ColumnName="VoiceTelephoneNumber" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImageFileURI" ColumnName="ImageFileURI" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PilotPlantModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Readings">
+            <EntityTypeMapping TypeName="PilotPlantModel.Reading">
+              <MappingFragment StoreEntitySet="Reading">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunDate" ColumnName="RunDate" />
+                <ScalarProperty Name="ReadingDateTime" ColumnName="ReadingDateTime" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ReadingSessionId" ColumnName="ReadingSessionId" />
+                <ScalarProperty Name="TankId" ColumnName="TankId" />
+                <ScalarProperty Name="GrowthPhaseId" ColumnName="GrowthPhaseId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ReadingDescriptionId" ColumnName="ReadingDescriptionId" />
+                <ScalarProperty Name="MachineReadingDescriptionId" ColumnName="MachineReadingDescriptionId" />
+                <ScalarProperty Name="ValuesState" ColumnName="ValuesState" />
+                <ScalarProperty Name="ReadingTime" ColumnName="ReadingTime" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Eft" ColumnName="Eft" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReadingDescriptions">
+            <EntityTypeMapping TypeName="PilotPlantModel.ReadingDescription">
+              <MappingFragment StoreEntitySet="ReadingDescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DataColumn" ColumnName="DataColumn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReadingSessions">
+            <EntityTypeMapping TypeName="PilotPlantModel.ReadingSession">
+              <MappingFragment StoreEntitySet="ReadingSession">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EFT" ColumnName="EFT" />
+                <ScalarProperty Name="PostIdxTime" ColumnName="PostIdxTime" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="Opened" ColumnName="Opened" />
+                <ScalarProperty Name="Closed" ColumnName="Closed" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RotatedReadings">
+            <EntityTypeMapping TypeName="PilotPlantModel.RotatedReading">
+              <MappingFragment StoreEntitySet="RotatedReading">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="Run_Date" ColumnName="Run_Date" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+                <ScalarProperty Name="ReadingSessionId" ColumnName="ReadingSessionId" />
+                <ScalarProperty Name="TankId" ColumnName="TankId" />
+                <ScalarProperty Name="Tank_Name" ColumnName="Tank_Name" />
+                <ScalarProperty Name="GrowthPhaseId" ColumnName="GrowthPhaseId" />
+                <ScalarProperty Name="Growth_Phase_Name" ColumnName="Growth_Phase_Name" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="EFT" ColumnName="EFT" />
+                <ScalarProperty Name="TANK" ColumnName="TANK" />
+                <ScalarProperty Name="TEMP_C" ColumnName="TEMP_C" />
+                <ScalarProperty Name="JTEMP_C" ColumnName="JTEMP_C" />
+                <ScalarProperty Name="pO2_pct" ColumnName="pO2_pct" />
+                <ScalarProperty Name="pH" ColumnName="pH" />
+                <ScalarProperty Name="STIRR_RPM" ColumnName="STIRR_RPM" />
+                <ScalarProperty Name="AIRF_LPM" ColumnName="AIRF_LPM" />
+                <ScalarProperty Name="PRESS_mbar" ColumnName="PRESS_mbar" />
+                <ScalarProperty Name="WEIGHT_KG" ColumnName="WEIGHT_KG" />
+                <ScalarProperty Name="Agitator_Seal_psi" ColumnName="Agitator_Seal_psi" />
+                <ScalarProperty Name="Clean_Steam_psi" ColumnName="Clean_Steam_psi" />
+                <ScalarProperty Name="Plant_Steam_psi" ColumnName="Plant_Steam_psi" />
+                <ScalarProperty Name="Base_L" ColumnName="Base_L" />
+                <ScalarProperty Name="Antifoam_L" ColumnName="Antifoam_L" />
+                <ScalarProperty Name="OD600" ColumnName="OD600" />
+                <ScalarProperty Name="OD600_dilution_factor" ColumnName="OD600_dilution_factor" />
+                <ScalarProperty Name="Off_line_pH" ColumnName="Off_line_pH" />
+                <ScalarProperty Name="Plate_Sample" ColumnName="Plate_Sample" />
+                <ScalarProperty Name="YSI_Glucose_g_per_L" ColumnName="YSI_Glucose_g_per_L" />
+                <ScalarProperty Name="Feed_KG" ColumnName="Feed_KG" />
+                <ScalarProperty Name="Feed_Rate_L_per_hr" ColumnName="Feed_Rate_L_per_hr" />
+                <ScalarProperty Name="Co_Feed_KG" ColumnName="Co_Feed_KG" />
+                <ScalarProperty Name="Co_Feed_Rate_L_per_hr" ColumnName="Co_Feed_Rate_L_per_hr" />
+                <ScalarProperty Name="Actual_Co_Feed_Rate_kg_per_hr" ColumnName="Actual_Co_Feed_Rate_kg_per_hr" />
+                <ScalarProperty Name="New_Feed_Rate_L_per_hr" ColumnName="New_Feed_Rate_L_per_hr" />
+                <ScalarProperty Name="GC_weight_g" ColumnName="GC_weight_g" />
+                <ScalarProperty Name="Base_mL" ColumnName="Base_mL" />
+                <ScalarProperty Name="Feed_mL" ColumnName="Feed_mL" />
+                <ScalarProperty Name="CoFeed_mL" ColumnName="CoFeed_mL" />
+                <ScalarProperty Name="Foam" ColumnName="Foam" />
+                <ScalarProperty Name="Crust" ColumnName="Crust" />
+                <ScalarProperty Name="Swirl" ColumnName="Swirl" />
+                <ScalarProperty Name="Over_Flow" ColumnName="Over_Flow" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Base_g" ColumnName="Base_g" />
+                <ScalarProperty Name="Feed_g" ColumnName="Feed_g" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="Feed" ColumnName="Feed" />
+                <ScalarProperty Name="Cofeed" ColumnName="Cofeed" />
+                <ScalarProperty Name="Fermentation_End_Time_hrs" ColumnName="Fermentation_End_Time_hrs" />
+                <ScalarProperty Name="LCAA_pct_Ymax" ColumnName="LCAA_pct_Ymax" />
+                <ScalarProperty Name="LCAA_Final_g_per_L" ColumnName="LCAA_Final_g_per_L" />
+                <ScalarProperty Name="LCAA_Produced_g" ColumnName="LCAA_Produced_g" />
+                <ScalarProperty Name="LCAA_Productivity_g_per_L_hr" ColumnName="LCAA_Productivity_g_per_L_hr" />
+                <ScalarProperty Name="Primary_Feed_Consumed_g" ColumnName="Primary_Feed_Consumed_g" />
+                <ScalarProperty Name="Primary_Feed_End_time_hrs" ColumnName="Primary_Feed_End_time_hrs" />
+                <ScalarProperty Name="Primary_Feed_Start_Time_hrs" ColumnName="Primary_Feed_Start_Time_hrs" />
+                <ScalarProperty Name="Purity_pct" ColumnName="Purity_pct" />
+                <ScalarProperty Name="Specific_Productivity_g_per_L_hr_per_g_per_L_DCW" ColumnName="Specific_Productivity_g_per_L_hr_per_g_per_L_DCW" />
+                <ScalarProperty Name="TPAA_pct_Ymax" ColumnName="TPAA_pct_Ymax" />
+                <ScalarProperty Name="TPAA_Produced_g" ColumnName="TPAA_Produced_g" />
+                <ScalarProperty Name="Analyical_Sample_Taken" ColumnName="Analyical_Sample_Taken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Runs">
+            <EntityTypeMapping TypeName="PilotPlantModel.Run">
+              <MappingFragment StoreEntitySet="Run">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rundate" ColumnName="Rundate" />
+                <ScalarProperty Name="RunStart" ColumnName="RunStart" />
+                <ScalarProperty Name="InductionStart" ColumnName="InductionStart" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="RunStatusId" ColumnName="RunStatusId" />
+                <ScalarProperty Name="GrowthPhaseId" ColumnName="GrowthPhaseId" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunHistories">
+            <EntityTypeMapping TypeName="PilotPlantModel.RunHistory">
+              <MappingFragment StoreEntitySet="RunHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="TankId" ColumnName="TankId" />
+                <ScalarProperty Name="ReadingDescriptionId" ColumnName="ReadingDescriptionId" />
+                <ScalarProperty Name="ValueArray" ColumnName="ValueArray" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SamplePlans">
+            <EntityTypeMapping TypeName="PilotPlantModel.SamplePlan">
+              <MappingFragment StoreEntitySet="SamplePlan">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="WordFileUri" ColumnName="WordFileUri" />
+                <ScalarProperty Name="ExcelFileUri" ColumnName="ExcelFileUri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SamplePlanDetails">
+            <EntityTypeMapping TypeName="PilotPlantModel.SamplePlanDetail">
+              <MappingFragment StoreEntitySet="SamplePlanDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SamplePlanId" ColumnName="SamplePlanId" />
+                <ScalarProperty Name="RunId" ColumnName="RunId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateAndTime" ColumnName="DateAndTime" />
+                <ScalarProperty Name="IsPrepared" ColumnName="IsPrepared" />
+                <ScalarProperty Name="DatePrepared" ColumnName="DatePrepared" />
+                <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+                <ScalarProperty Name="IsWeighed" ColumnName="IsWeighed" />
+                <ScalarProperty Name="DateWeighed" ColumnName="DateWeighed" />
+                <ScalarProperty Name="WeighedBy" ColumnName="WeighedBy" />
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tanks">
+            <EntityTypeMapping TypeName="PilotPlantModel.Tank">
+              <MappingFragment StoreEntitySet="Tank">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunStatus">
+            <EntityTypeMapping TypeName="PilotPlantModel.RunStatus">
+              <MappingFragment StoreEntitySet="RunStatus">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

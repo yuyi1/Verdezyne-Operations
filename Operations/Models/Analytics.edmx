@@ -1,0 +1,942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AnalyticsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalibrationStandard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalibrationName" Type="varchar" MaxLength="50" />
+          <Property Name="CalibrationDate" Type="datetime" />
+          <Property Name="Folder" Type="varchar" MaxLength="190" />
+          <Property Name="Filename" Type="varchar" MaxLength="70" />
+          <Property Name="Tablename" Type="varchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="InfoID" />
+          </Key>
+          <Property Name="InfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="1028" />
+          <Property Name="Submitter" Type="varchar" MaxLength="50" />
+          <Property Name="SubmitDate" Type="datetime" />
+          <Property Name="Plate_Name" Type="varchar" MaxLength="255" />
+          <Property Name="Carbon_Source" Type="varchar" MaxLength="255" />
+          <Property Name="t_dot_C_Source" Type="varchar" MaxLength="50" />
+          <Property Name="Strains" Type="varchar" MaxLength="255" />
+          <Property Name="Other_Analytes" Type="varchar" MaxLength="512" />
+          <Property Name="Project" Type="varchar" MaxLength="50" />
+          <Property Name="Group" Type="varchar" MaxLength="50" />
+          <Property Name="Special_Instructions" Type="varchar" MaxLength="1024" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="SpreadsheetType" Type="varchar" MaxLength="50" />
+          <Property Name="Feed" Type="float" />
+          <Property Name="SampleType" Type="varchar" MaxLength="20" />
+          <Property Name="KeyAnalytes" Type="varchar" MaxLength="50" />
+          <Property Name="ConcGL" Type="varchar" MaxLength="50" />
+          <Property Name="SubmissionName" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InfoID" Type="int" />
+          <Property Name="RowNumber" Type="int" />
+          <Property Name="SampleDate" Type="datetime" />
+          <Property Name="Date" Type="int" />
+          <Property Name="Strain" Type="varchar" MaxLength="50" />
+          <Property Name="Tank" Type="varchar" MaxLength="10" />
+          <Property Name="DecimalTime" Type="money" />
+          <Property Name="Stage" Type="varchar" MaxLength="50" />
+          <Property Name="ListName" Type="varchar" MaxLength="150" />
+          <Property Name="DilutionFactor" Type="money" />
+          <Property Name="ListTab" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Submission Filename" Type="varchar" MaxLength="260" />
+          <Property Name="Team" Type="varchar" MaxLength="20" />
+          <Property Name="Submitter" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="Received" Type="datetime" />
+          <Property Name="Sample #" Type="int" />
+          <Property Name="Sample state" Type="varchar" MaxLength="20" />
+          <Property Name="GC 4" Type="int" />
+          <Property Name="LC " Type="int" />
+          <Property Name="IC_An" Type="int" />
+          <Property Name="IC_Ca" Type="int" />
+          <Property Name="IC_Me" Type="int" />
+          <Property Name="KF " Type="int" />
+          <Property Name="Tiamo" Type="int" />
+          <Property Name="MP" Type="int" />
+          <Property Name="ASH" Type="int" />
+          <Property Name="Prepped by" Type="varchar" MaxLength="20" />
+          <Property Name="Processed by" Type="varchar" MaxLength="20" />
+          <Property Name="Reported" Type="datetime" />
+          <Property Name="Posted by" Type="varchar" MaxLength="20" />
+          <Property Name="Archive Location" Type="varchar" MaxLength="260" />
+          <Property Name="Comments" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="SampleAnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SampleDate" Type="datetime" />
+          <Property Name="SampleSerialNo" Type="varchar" MaxLength="20" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="F .Area" Type="money" />
+          <Property Name="Acet .Area" Type="money" />
+          <Property Name="Cl .Area" Type="money" />
+          <Property Name="Br. Area" Type="money" />
+          <Property Name="NO3.Area" Type="money" />
+          <Property Name="Po4.Area" Type="money" />
+          <Property Name="So4.Area" Type="money" />
+          <Property Name="F PPM" Type="money" />
+          <Property Name="Acet PPM" Type="money" />
+          <Property Name="Cl PPM" Type="money" />
+          <Property Name="Br PPM" Type="money" />
+          <Property Name="No3 PPM" Type="money" />
+          <Property Name="Po4 PPM" Type="money" />
+          <Property Name="So4 PPM" Type="money" />
+          <Property Name="SpreadsheetLink" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="SampleCation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SampleDate" Type="datetime" />
+          <Property Name="SampleSerialNo" Type="varchar" MaxLength="20" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="Li.Area" Type="money" />
+          <Property Name="Na.Area" Type="money" />
+          <Property Name="NH4+.Area" Type="money" />
+          <Property Name="K.Area" Type="money" />
+          <Property Name="Ca 2+.Area" Type="money" />
+          <Property Name="Mg 2+.Area" Type="money" />
+          <Property Name="Li. PPM" Type="money" />
+          <Property Name="Na. PPM" Type="money" />
+          <Property Name="NH4+. PPM" Type="money" />
+          <Property Name="K. PPM" Type="money" />
+          <Property Name="Ca. PPM" Type="money" />
+          <Property Name="Mg. PPM" Type="money" />
+          <Property Name="SpreadsheetLink" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="SampleIron">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SampleDate" Type="datetime" />
+          <Property Name="SampleSerialNo" Type="varchar" MaxLength="20" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="Fe (III).Area" Type="money" />
+          <Property Name="Cu.Area" Type="money" />
+          <Property Name="Ni.Area" Type="money" />
+          <Property Name="Zn.Area" Type="money" />
+          <Property Name="Co.Area" Type="money" />
+          <Property Name="Mn.Area" Type="money" />
+          <Property Name="Fe (III).PPM" Type="money" />
+          <Property Name="Cu PPM" Type="money" />
+          <Property Name="Ni PPM" Type="money" />
+          <Property Name="Zn PPM" Type="money" />
+          <Property Name="Co PPM" Type="money" />
+          <Property Name="Mn PPM" Type="money" />
+          <Property Name="SpreadsheetLink" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="STDAnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalibrationStandardId" Type="int" Nullable="false" />
+          <Property Name="CalibrationDate" Type="datetime" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="F .Area" Type="money" />
+          <Property Name="Acet .Area" Type="money" />
+          <Property Name="Cl .Area" Type="money" />
+          <Property Name="Br. Area" Type="money" />
+          <Property Name="NO3.Area" Type="money" />
+          <Property Name="Po4.Area" Type="money" />
+          <Property Name="So4.Area" Type="money" />
+          <Property Name="F PPM" Type="money" />
+          <Property Name="Acet PPM" Type="money" />
+          <Property Name="Cl PPM" Type="money" />
+          <Property Name="Br PPM" Type="money" />
+          <Property Name="No3 PPM" Type="money" />
+          <Property Name="Po4 PPM" Type="money" />
+          <Property Name="So4 PPM" Type="money" />
+        </EntityType>
+        <EntityType Name="STDCation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalibrationStandardId" Type="int" Nullable="false" />
+          <Property Name="CalibrationDate" Type="datetime" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="Li.Area" Type="money" />
+          <Property Name="Na.Area" Type="money" />
+          <Property Name="NH4+.Area" Type="money" />
+          <Property Name="K.Area" Type="money" />
+          <Property Name="Ca 2+.Area" Type="money" />
+          <Property Name="Mg 2+.Area" Type="money" />
+          <Property Name="Li. PPM" Type="money" />
+          <Property Name="Na. PPM" Type="money" />
+          <Property Name="NH4+. PPM" Type="money" />
+          <Property Name="K. PPM" Type="money" />
+          <Property Name="Ca. PPM" Type="money" />
+          <Property Name="Mg. PPM" Type="money" />
+        </EntityType>
+        <EntityType Name="STDIron">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalibrationStandardId" Type="int" Nullable="false" />
+          <Property Name="CalibrationDate" Type="datetime" />
+          <Property Name="Ident" Type="varchar" MaxLength="150" />
+          <Property Name="Dilution" Type="money" />
+          <Property Name="Fe (III).Area" Type="money" />
+          <Property Name="Cu.Area" Type="money" />
+          <Property Name="Ni.Area" Type="money" />
+          <Property Name="Zn.Area" Type="money" />
+          <Property Name="Co.Area" Type="money" />
+          <Property Name="Mn.Area" Type="money" />
+          <Property Name="Fe (III).PPM" Type="money" />
+          <Property Name="Cu PPM" Type="money" />
+          <Property Name="Ni PPM" Type="money" />
+          <Property Name="Zn PPM" Type="money" />
+          <Property Name="Co PPM" Type="money" />
+          <Property Name="Mn PPM" Type="money" />
+        </EntityType>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="SubmissionID" />
+          </Key>
+          <Property Name="SubmissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InfoID" Type="int" />
+          <Property Name="Number_Of_Samples" Type="int" />
+          <Property Name="Sequence_No" Type="int" />
+          <Property Name="SOP" Type="varchar" MaxLength="10" />
+          <Property Name="Instrument" Type="varchar" MaxLength="10" />
+          <Property Name="TabName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_List_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="InfoID" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="InfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STDAnion_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDAnion" Type="Self.STDAnion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDAnion">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STDCation_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDCation" Type="Self.STDCation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDCation">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STDIron_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDIron" Type="Self.STDIron" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDIron">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Submission_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <End Role="Submission" Type="Self.Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="InfoID" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="InfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnalyticsModelStoreContainer">
+          <EntitySet Name="CalibrationStandard" EntityType="Self.CalibrationStandard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QC" EntityType="Self.QC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SampleAnion" EntityType="Self.SampleAnion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SampleCation" EntityType="Self.SampleCation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SampleIron" EntityType="Self.SampleIron" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STDAnion" EntityType="Self.STDAnion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STDCation" EntityType="Self.STDCation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STDIron" EntityType="Self.STDIron" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Submission" EntityType="Self.Submission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_List_Info" Association="Self.FK_List_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STDAnion_CalibrationStandard" Association="Self.FK_STDAnion_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandard" />
+            <End Role="STDAnion" EntitySet="STDAnion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STDCation_CalibrationStandard" Association="Self.FK_STDCation_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandard" />
+            <End Role="STDCation" EntitySet="STDCation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STDIron_CalibrationStandard" Association="Self.FK_STDIron_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandard" />
+            <End Role="STDIron" EntitySet="STDIron" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Submission_Info" Association="Self.FK_Submission_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="Submission" EntitySet="Submission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AnalyticsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CalibrationStandard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalibrationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CalibrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Folder" Type="String" MaxLength="190" FixedLength="false" Unicode="false" />
+          <Property Name="Filename" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="Tablename" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="STDAnions" Relationship="Self.FK_STDAnion_CalibrationStandard" FromRole="CalibrationStandard" ToRole="STDAnion" />
+          <NavigationProperty Name="STDCations" Relationship="Self.FK_STDCation_CalibrationStandard" FromRole="CalibrationStandard" ToRole="STDCation" />
+          <NavigationProperty Name="STDIrons" Relationship="Self.FK_STDIron_CalibrationStandard" FromRole="CalibrationStandard" ToRole="STDIron" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="InfoID" />
+          </Key>
+          <Property Name="InfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="1028" FixedLength="false" Unicode="false" />
+          <Property Name="Submitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubmitDate" Type="DateTime" Precision="3" />
+          <Property Name="Plate_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Carbon_Source" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="t_dot_C_Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Strains" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Other_Analytes" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Special_Instructions" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="SpreadsheetType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Feed" Type="Double" />
+          <Property Name="SampleType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KeyAnalytes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConcGL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubmissionName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Lists" Relationship="Self.FK_List_Info" FromRole="Info" ToRole="List" />
+          <NavigationProperty Name="Submissions" Relationship="Self.FK_Submission_Info" FromRole="Info" ToRole="Submission" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListID" />
+          </Key>
+          <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InfoID" Type="Int32" />
+          <Property Name="RowNumber" Type="Int32" />
+          <Property Name="SampleDate" Type="DateTime" Precision="3" />
+          <Property Name="Date" Type="Int32" />
+          <Property Name="Strain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tank" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DecimalTime" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Stage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ListName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DilutionFactor" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ListTab" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_List_Info" FromRole="List" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="QC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Submission_Filename" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="Team" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Submitter" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Received" Type="DateTime" Precision="3" />
+          <Property Name="Sample__" Type="Int32" />
+          <Property Name="Sample_state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GC_4" Type="Int32" />
+          <Property Name="LC_" Type="Int32" />
+          <Property Name="IC_An" Type="Int32" />
+          <Property Name="IC_Ca" Type="Int32" />
+          <Property Name="IC_Me" Type="Int32" />
+          <Property Name="KF_" Type="Int32" />
+          <Property Name="Tiamo" Type="Int32" />
+          <Property Name="MP" Type="Int32" />
+          <Property Name="ASH" Type="Int32" />
+          <Property Name="Prepped_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Processed_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Reported" Type="DateTime" Precision="3" />
+          <Property Name="Posted_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Archive_Location" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SampleAnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleDate" Type="DateTime" Precision="3" />
+          <Property Name="SampleSerialNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="F__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Acet__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cl__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Br__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NO3_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Po4_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="So4_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="F_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Acet_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cl_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Br_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="No3_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Po4_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="So4_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SpreadsheetLink" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SampleCation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleDate" Type="DateTime" Precision="3" />
+          <Property Name="SampleSerialNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Li_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Na_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NH4__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="K_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ca_2__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mg_2__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Li__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Na__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NH4___PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="K__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ca__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mg__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SpreadsheetLink" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SampleIron">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleDate" Type="DateTime" Precision="3" />
+          <Property Name="SampleSerialNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Fe__III__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cu_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ni_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Zn_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Co_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mn_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Fe__III__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cu_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ni_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Zn_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Co_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mn_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SpreadsheetLink" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="STDAnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalibrationStandardId" Type="Int32" Nullable="false" />
+          <Property Name="CalibrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="F__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Acet__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cl__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Br__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NO3_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Po4_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="So4_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="F_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Acet_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cl_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Br_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="No3_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Po4_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="So4_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CalibrationStandard" Relationship="Self.FK_STDAnion_CalibrationStandard" FromRole="STDAnion" ToRole="CalibrationStandard" />
+        </EntityType>
+        <EntityType Name="STDCation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalibrationStandardId" Type="Int32" Nullable="false" />
+          <Property Name="CalibrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Li_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Na_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NH4__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="K_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ca_2__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mg_2__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Li__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Na__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="NH4___PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="K__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ca__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mg__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CalibrationStandard" Relationship="Self.FK_STDCation_CalibrationStandard" FromRole="STDCation" ToRole="CalibrationStandard" />
+        </EntityType>
+        <EntityType Name="STDIron">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalibrationStandardId" Type="Int32" Nullable="false" />
+          <Property Name="CalibrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Ident" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Dilution" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Fe__III__Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cu_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ni_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Zn_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Co_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mn_Area" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Fe__III__PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cu_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ni_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Zn_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Co_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Mn_PPM" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CalibrationStandard" Relationship="Self.FK_STDIron_CalibrationStandard" FromRole="STDIron" ToRole="CalibrationStandard" />
+        </EntityType>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="SubmissionID" />
+          </Key>
+          <Property Name="SubmissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InfoID" Type="Int32" />
+          <Property Name="Number_Of_Samples" Type="Int32" />
+          <Property Name="Sequence_No" Type="Int32" />
+          <Property Name="SOP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Instrument" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TabName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_Submission_Info" FromRole="Submission" ToRole="Info" />
+        </EntityType>
+        <Association Name="FK_STDAnion_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDAnion" Type="Self.STDAnion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDAnion">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STDCation_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDCation" Type="Self.STDCation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDCation">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STDIron_CalibrationStandard">
+          <End Role="CalibrationStandard" Type="Self.CalibrationStandard" Multiplicity="1" />
+          <End Role="STDIron" Type="Self.STDIron" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalibrationStandard">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="STDIron">
+              <PropertyRef Name="CalibrationStandardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_List_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="InfoID" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="InfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Submission_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <End Role="Submission" Type="Self.Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="InfoID" />
+            </Principal>
+            <Dependent Role="Submission">
+              <PropertyRef Name="InfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnalyticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CalibrationStandards" EntityType="Self.CalibrationStandard" />
+          <EntitySet Name="Infoes" EntityType="Self.Info" />
+          <EntitySet Name="Lists" EntityType="Self.List" />
+          <EntitySet Name="QCs" EntityType="Self.QC" />
+          <EntitySet Name="SampleAnions" EntityType="Self.SampleAnion" />
+          <EntitySet Name="SampleCations" EntityType="Self.SampleCation" />
+          <EntitySet Name="SampleIrons" EntityType="Self.SampleIron" />
+          <EntitySet Name="STDAnions" EntityType="Self.STDAnion" />
+          <EntitySet Name="STDCations" EntityType="Self.STDCation" />
+          <EntitySet Name="STDIrons" EntityType="Self.STDIron" />
+          <EntitySet Name="Submissions" EntityType="Self.Submission" />
+          <AssociationSet Name="FK_STDAnion_CalibrationStandard" Association="Self.FK_STDAnion_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandards" />
+            <End Role="STDAnion" EntitySet="STDAnions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STDCation_CalibrationStandard" Association="Self.FK_STDCation_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandards" />
+            <End Role="STDCation" EntitySet="STDCations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STDIron_CalibrationStandard" Association="Self.FK_STDIron_CalibrationStandard">
+            <End Role="CalibrationStandard" EntitySet="CalibrationStandards" />
+            <End Role="STDIron" EntitySet="STDIrons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_List_Info" Association="Self.FK_List_Info">
+            <End Role="Info" EntitySet="Infoes" />
+            <End Role="List" EntitySet="Lists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Submission_Info" Association="Self.FK_Submission_Info">
+            <End Role="Info" EntitySet="Infoes" />
+            <End Role="Submission" EntitySet="Submissions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AnalyticsModelStoreContainer" CdmEntityContainer="AnalyticsEntities">
+          <EntitySetMapping Name="CalibrationStandards">
+            <EntityTypeMapping TypeName="AnalyticsModel.CalibrationStandard">
+              <MappingFragment StoreEntitySet="CalibrationStandard">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CalibrationName" ColumnName="CalibrationName" />
+                <ScalarProperty Name="CalibrationDate" ColumnName="CalibrationDate" />
+                <ScalarProperty Name="Folder" ColumnName="Folder" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Tablename" ColumnName="Tablename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infoes">
+            <EntityTypeMapping TypeName="AnalyticsModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="InfoID" ColumnName="InfoID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Submitter" ColumnName="Submitter" />
+                <ScalarProperty Name="SubmitDate" ColumnName="SubmitDate" />
+                <ScalarProperty Name="Plate_Name" ColumnName="Plate_Name" />
+                <ScalarProperty Name="Carbon_Source" ColumnName="Carbon_Source" />
+                <ScalarProperty Name="t_dot_C_Source" ColumnName="t_dot_C_Source" />
+                <ScalarProperty Name="Strains" ColumnName="Strains" />
+                <ScalarProperty Name="Other_Analytes" ColumnName="Other_Analytes" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Special_Instructions" ColumnName="Special_Instructions" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="SpreadsheetType" ColumnName="SpreadsheetType" />
+                <ScalarProperty Name="Feed" ColumnName="Feed" />
+                <ScalarProperty Name="SampleType" ColumnName="SampleType" />
+                <ScalarProperty Name="KeyAnalytes" ColumnName="KeyAnalytes" />
+                <ScalarProperty Name="ConcGL" ColumnName="ConcGL" />
+                <ScalarProperty Name="SubmissionName" ColumnName="SubmissionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lists">
+            <EntityTypeMapping TypeName="AnalyticsModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="ListID" ColumnName="ListID" />
+                <ScalarProperty Name="InfoID" ColumnName="InfoID" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="SampleDate" ColumnName="SampleDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Strain" ColumnName="Strain" />
+                <ScalarProperty Name="Tank" ColumnName="Tank" />
+                <ScalarProperty Name="DecimalTime" ColumnName="DecimalTime" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="ListName" ColumnName="ListName" />
+                <ScalarProperty Name="DilutionFactor" ColumnName="DilutionFactor" />
+                <ScalarProperty Name="ListTab" ColumnName="ListTab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QCs">
+            <EntityTypeMapping TypeName="AnalyticsModel.QC">
+              <MappingFragment StoreEntitySet="QC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Submission_Filename" ColumnName="Submission Filename" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Submitter" ColumnName="Submitter" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Received" ColumnName="Received" />
+                <ScalarProperty Name="Sample__" ColumnName="Sample #" />
+                <ScalarProperty Name="Sample_state" ColumnName="Sample state" />
+                <ScalarProperty Name="GC_4" ColumnName="GC 4" />
+                <ScalarProperty Name="LC_" ColumnName="LC " />
+                <ScalarProperty Name="IC_An" ColumnName="IC_An" />
+                <ScalarProperty Name="IC_Ca" ColumnName="IC_Ca" />
+                <ScalarProperty Name="IC_Me" ColumnName="IC_Me" />
+                <ScalarProperty Name="KF_" ColumnName="KF " />
+                <ScalarProperty Name="Tiamo" ColumnName="Tiamo" />
+                <ScalarProperty Name="MP" ColumnName="MP" />
+                <ScalarProperty Name="ASH" ColumnName="ASH" />
+                <ScalarProperty Name="Prepped_by" ColumnName="Prepped by" />
+                <ScalarProperty Name="Processed_by" ColumnName="Processed by" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="Posted_by" ColumnName="Posted by" />
+                <ScalarProperty Name="Archive_Location" ColumnName="Archive Location" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SampleAnions">
+            <EntityTypeMapping TypeName="AnalyticsModel.SampleAnion">
+              <MappingFragment StoreEntitySet="SampleAnion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SampleDate" ColumnName="SampleDate" />
+                <ScalarProperty Name="SampleSerialNo" ColumnName="SampleSerialNo" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="F__Area" ColumnName="F .Area" />
+                <ScalarProperty Name="Acet__Area" ColumnName="Acet .Area" />
+                <ScalarProperty Name="Cl__Area" ColumnName="Cl .Area" />
+                <ScalarProperty Name="Br__Area" ColumnName="Br. Area" />
+                <ScalarProperty Name="NO3_Area" ColumnName="NO3.Area" />
+                <ScalarProperty Name="Po4_Area" ColumnName="Po4.Area" />
+                <ScalarProperty Name="So4_Area" ColumnName="So4.Area" />
+                <ScalarProperty Name="F_PPM" ColumnName="F PPM" />
+                <ScalarProperty Name="Acet_PPM" ColumnName="Acet PPM" />
+                <ScalarProperty Name="Cl_PPM" ColumnName="Cl PPM" />
+                <ScalarProperty Name="Br_PPM" ColumnName="Br PPM" />
+                <ScalarProperty Name="No3_PPM" ColumnName="No3 PPM" />
+                <ScalarProperty Name="Po4_PPM" ColumnName="Po4 PPM" />
+                <ScalarProperty Name="So4_PPM" ColumnName="So4 PPM" />
+                <ScalarProperty Name="SpreadsheetLink" ColumnName="SpreadsheetLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SampleCations">
+            <EntityTypeMapping TypeName="AnalyticsModel.SampleCation">
+              <MappingFragment StoreEntitySet="SampleCation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SampleDate" ColumnName="SampleDate" />
+                <ScalarProperty Name="SampleSerialNo" ColumnName="SampleSerialNo" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="Li_Area" ColumnName="Li.Area" />
+                <ScalarProperty Name="Na_Area" ColumnName="Na.Area" />
+                <ScalarProperty Name="NH4__Area" ColumnName="NH4+.Area" />
+                <ScalarProperty Name="K_Area" ColumnName="K.Area" />
+                <ScalarProperty Name="Ca_2__Area" ColumnName="Ca 2+.Area" />
+                <ScalarProperty Name="Mg_2__Area" ColumnName="Mg 2+.Area" />
+                <ScalarProperty Name="Li__PPM" ColumnName="Li. PPM" />
+                <ScalarProperty Name="Na__PPM" ColumnName="Na. PPM" />
+                <ScalarProperty Name="NH4___PPM" ColumnName="NH4+. PPM" />
+                <ScalarProperty Name="K__PPM" ColumnName="K. PPM" />
+                <ScalarProperty Name="Ca__PPM" ColumnName="Ca. PPM" />
+                <ScalarProperty Name="Mg__PPM" ColumnName="Mg. PPM" />
+                <ScalarProperty Name="SpreadsheetLink" ColumnName="SpreadsheetLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SampleIrons">
+            <EntityTypeMapping TypeName="AnalyticsModel.SampleIron">
+              <MappingFragment StoreEntitySet="SampleIron">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SampleDate" ColumnName="SampleDate" />
+                <ScalarProperty Name="SampleSerialNo" ColumnName="SampleSerialNo" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="Fe__III__Area" ColumnName="Fe (III).Area" />
+                <ScalarProperty Name="Cu_Area" ColumnName="Cu.Area" />
+                <ScalarProperty Name="Ni_Area" ColumnName="Ni.Area" />
+                <ScalarProperty Name="Zn_Area" ColumnName="Zn.Area" />
+                <ScalarProperty Name="Co_Area" ColumnName="Co.Area" />
+                <ScalarProperty Name="Mn_Area" ColumnName="Mn.Area" />
+                <ScalarProperty Name="Fe__III__PPM" ColumnName="Fe (III).PPM" />
+                <ScalarProperty Name="Cu_PPM" ColumnName="Cu PPM" />
+                <ScalarProperty Name="Ni_PPM" ColumnName="Ni PPM" />
+                <ScalarProperty Name="Zn_PPM" ColumnName="Zn PPM" />
+                <ScalarProperty Name="Co_PPM" ColumnName="Co PPM" />
+                <ScalarProperty Name="Mn_PPM" ColumnName="Mn PPM" />
+                <ScalarProperty Name="SpreadsheetLink" ColumnName="SpreadsheetLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STDAnions">
+            <EntityTypeMapping TypeName="AnalyticsModel.STDAnion">
+              <MappingFragment StoreEntitySet="STDAnion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CalibrationStandardId" ColumnName="CalibrationStandardId" />
+                <ScalarProperty Name="CalibrationDate" ColumnName="CalibrationDate" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="F__Area" ColumnName="F .Area" />
+                <ScalarProperty Name="Acet__Area" ColumnName="Acet .Area" />
+                <ScalarProperty Name="Cl__Area" ColumnName="Cl .Area" />
+                <ScalarProperty Name="Br__Area" ColumnName="Br. Area" />
+                <ScalarProperty Name="NO3_Area" ColumnName="NO3.Area" />
+                <ScalarProperty Name="Po4_Area" ColumnName="Po4.Area" />
+                <ScalarProperty Name="So4_Area" ColumnName="So4.Area" />
+                <ScalarProperty Name="F_PPM" ColumnName="F PPM" />
+                <ScalarProperty Name="Acet_PPM" ColumnName="Acet PPM" />
+                <ScalarProperty Name="Cl_PPM" ColumnName="Cl PPM" />
+                <ScalarProperty Name="Br_PPM" ColumnName="Br PPM" />
+                <ScalarProperty Name="No3_PPM" ColumnName="No3 PPM" />
+                <ScalarProperty Name="Po4_PPM" ColumnName="Po4 PPM" />
+                <ScalarProperty Name="So4_PPM" ColumnName="So4 PPM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STDCations">
+            <EntityTypeMapping TypeName="AnalyticsModel.STDCation">
+              <MappingFragment StoreEntitySet="STDCation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CalibrationStandardId" ColumnName="CalibrationStandardId" />
+                <ScalarProperty Name="CalibrationDate" ColumnName="CalibrationDate" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="Li_Area" ColumnName="Li.Area" />
+                <ScalarProperty Name="Na_Area" ColumnName="Na.Area" />
+                <ScalarProperty Name="NH4__Area" ColumnName="NH4+.Area" />
+                <ScalarProperty Name="K_Area" ColumnName="K.Area" />
+                <ScalarProperty Name="Ca_2__Area" ColumnName="Ca 2+.Area" />
+                <ScalarProperty Name="Mg_2__Area" ColumnName="Mg 2+.Area" />
+                <ScalarProperty Name="Li__PPM" ColumnName="Li. PPM" />
+                <ScalarProperty Name="Na__PPM" ColumnName="Na. PPM" />
+                <ScalarProperty Name="NH4___PPM" ColumnName="NH4+. PPM" />
+                <ScalarProperty Name="K__PPM" ColumnName="K. PPM" />
+                <ScalarProperty Name="Ca__PPM" ColumnName="Ca. PPM" />
+                <ScalarProperty Name="Mg__PPM" ColumnName="Mg. PPM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STDIrons">
+            <EntityTypeMapping TypeName="AnalyticsModel.STDIron">
+              <MappingFragment StoreEntitySet="STDIron">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CalibrationStandardId" ColumnName="CalibrationStandardId" />
+                <ScalarProperty Name="CalibrationDate" ColumnName="CalibrationDate" />
+                <ScalarProperty Name="Ident" ColumnName="Ident" />
+                <ScalarProperty Name="Dilution" ColumnName="Dilution" />
+                <ScalarProperty Name="Fe__III__Area" ColumnName="Fe (III).Area" />
+                <ScalarProperty Name="Cu_Area" ColumnName="Cu.Area" />
+                <ScalarProperty Name="Ni_Area" ColumnName="Ni.Area" />
+                <ScalarProperty Name="Zn_Area" ColumnName="Zn.Area" />
+                <ScalarProperty Name="Co_Area" ColumnName="Co.Area" />
+                <ScalarProperty Name="Mn_Area" ColumnName="Mn.Area" />
+                <ScalarProperty Name="Fe__III__PPM" ColumnName="Fe (III).PPM" />
+                <ScalarProperty Name="Cu_PPM" ColumnName="Cu PPM" />
+                <ScalarProperty Name="Ni_PPM" ColumnName="Ni PPM" />
+                <ScalarProperty Name="Zn_PPM" ColumnName="Zn PPM" />
+                <ScalarProperty Name="Co_PPM" ColumnName="Co PPM" />
+                <ScalarProperty Name="Mn_PPM" ColumnName="Mn PPM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Submissions">
+            <EntityTypeMapping TypeName="AnalyticsModel.Submission">
+              <MappingFragment StoreEntitySet="Submission">
+                <ScalarProperty Name="SubmissionID" ColumnName="SubmissionID" />
+                <ScalarProperty Name="InfoID" ColumnName="InfoID" />
+                <ScalarProperty Name="Number_Of_Samples" ColumnName="Number_Of_Samples" />
+                <ScalarProperty Name="Sequence_No" ColumnName="Sequence_No" />
+                <ScalarProperty Name="SOP" ColumnName="SOP" />
+                <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+                <ScalarProperty Name="TabName" ColumnName="TabName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

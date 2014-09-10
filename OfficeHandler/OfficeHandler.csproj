@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50BC382A-58D3-423F-857D-C1D10F24B82D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OfficeHandler</RootNamespace>
+    <AssemblyName>OfficeHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.0.0-beta2\lib\net20\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.5.452, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\build\1.0\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\IExcelHandler.cs" />
+    <Compile Include="Contracts\IExcelHandlerFactory.cs" />
+    <Compile Include="Contracts\IExcelSheet.cs" />
+    <Compile Include="Contracts\ILoader.cs" />
+    <Compile Include="Contracts\IWordTable.cs" />
+    <Compile Include="Excel\ExcelDataReader\ExcelDataReaderHandler.cs" />
+    <Compile Include="Excel\ExcelDataReader\ExcelDataReaderSheet.cs" />
+    <Compile Include="Excel\ExcelHandlerBase.cs" />
+    <Compile Include="Excel\ExcelUtils.cs" />
+    <Compile Include="Excel\Factory\DataTableFactory.cs" />
+    <Compile Include="Excel\Injector.cs" />
+    <Compile Include="Excel\TestWriter.cs" />
+    <Compile Include="FileIO\SampleSubmissionPlan.cs" />
+    <Compile Include="FileIO\SqlCreateTableWriter.cs" />
+    <Compile Include="Loaders\LoaderBase.cs" />
+    <Compile Include="Notifications\OfficeHandlerEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Word\CellText.cs" />
+    <Compile Include="Word\Converters\CsvToDataTable.cs" />
+    <Compile Include="Word\Converters\CsvToSqlCreateTableStatement.cs" />
+    <Compile Include="Word\Converters\StringDataTableFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Word\Converters\WordCellsToObjectArray.cs" />
+    <Compile Include="Word\Converters\WordTableToDataTable.cs" />
+    <Compile Include="Word\DocxReader.cs" />
+    <Compile Include="Word\DocxWriter.cs" />
+    <Compile Include="Excel\EPPlus\EPPlusExcelHandler.cs" />
+    <Compile Include="Excel\EPPlus\EPPlusExcelSheet.cs" />
+    <Compile Include="Excel\Factory\ExcelHandlerFactory.cs" />
+    <Compile Include="Excel\NPOI\NpoiExcelHandler.cs" />
+    <Compile Include="Excel\NPOI\NpoiExcelSheet.cs" />
+    <Compile Include="FileFinder.cs" />
+    <Compile Include="Word\Tables\FermentationOutlineTable.cs" />
+    <Compile Include="Word\Tables\FermentationPlanTable.cs" />
+    <Compile Include="Word\Tables\SamplingDetailsTable.cs" />
+    <Compile Include="Word\SamplingTableSurvey.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Excel\Excel.csproj">
+      <Project>{4cb0690e-3e7a-497c-9116-d52024f63195}</Project>
+      <Name>Excel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FilterPipeline\FilterPipeline.csproj">
+      <Project>{af3c0b55-5b9e-4b26-9c40-712ba6f8e5f6}</Project>
+      <Name>FilterPipeline</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="Excel\Tables\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

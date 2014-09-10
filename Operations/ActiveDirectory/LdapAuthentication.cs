@@ -8,7 +8,7 @@ namespace Operations.ActiveDirectory
     public class LdapAuthentication
     {
         private String _path;
-        private String _filterAttribute;
+        private String _filterAttribute = string.Empty;
 
         public LdapAuthentication(String path)
         {
